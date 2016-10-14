@@ -41,8 +41,13 @@ def remove_chars(path):
     """
     chars = ":*?<>|"
     if path.lower().startswith("smb://"):
+        try:
+            prefix, path = path.split('@')
+            prefix = prefix + "@"
+        except:
+            prefix = "smb://"
+            path = path[6:]
 
-        path = path[6:]
         return "smb://" + ''.join([c for c in path if c not in chars])
 
     else:

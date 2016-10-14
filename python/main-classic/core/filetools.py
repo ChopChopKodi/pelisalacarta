@@ -48,7 +48,7 @@ def remove_chars(path):
             prefix = "smb://"
             path = path[6:]
 
-        return "smb://" + ''.join([c for c in path if c not in chars])
+        return prefix + ''.join([c for c in path if c not in chars])
 
     else:
         if path.find(":\\") == 1:

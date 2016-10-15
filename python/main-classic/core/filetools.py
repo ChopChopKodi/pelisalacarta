@@ -40,7 +40,6 @@ def remove_chars(path):
     @return: devuelve la cadena sin los caracteres no permitidos
     """
     chars = ":*?<>|"
-    prefix = ""
     if path.lower().startswith("smb://"):
         try:
             prefix, path = path.split('@')
@@ -53,10 +52,12 @@ def remove_chars(path):
 
     else:
         if path.find(":\\") == 1:
-            prefix = path[0:3]
+            unidad = path[0:3]
             path = path[2:]
+        else:
+            unidad = ""
 
-    return prefix + ''.join([c for c in path if c not in chars])
+        return unidad + ''.join([c for c in path if c not in chars])
 
 
 def encode(path, _samba=False):
